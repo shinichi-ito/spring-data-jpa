@@ -82,4 +82,10 @@ public class CourseSpringDataRepositoryTest {
         logger.info("Second Page -> {}", secondPage.getContent());
         //Second Page -> [Course{Dummy1'}, Course{Dummy2'}, Course{Dummy3'}]
     }
+    @Test
+    public void findUsingName(){
+        logger.info("FindByName -> {}", repository.findByName("JPA in 50 Steps"));
+        //FindByName -> [Course{JPA in 50 Steps'}]
+
+    }
 }

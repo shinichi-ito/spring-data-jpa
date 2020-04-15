@@ -1,5 +1,7 @@
 package com.in28minutes.jpa.hibernate.entity;
 
+//import net.minidev.json.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,7 +19,7 @@ import java.util.List;
                         query="select c from Course c where c.name like '%100 Steps'")
         }
 )
-
+@Cacheable
 public class Course {
     @Id
     @GeneratedValue
@@ -29,7 +31,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Review> reviews = new ArrayList<>();
 
+
     @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
     private List<Student> students = new ArrayList<>();
 
     @UpdateTimestamp
